@@ -1,9 +1,9 @@
-### How does it work
+# How does it work
 The farmer goes to the DAPP and enter the farm and product information in the Farm and Product Details section, like product price and notes so he can harvest, process, pack and put a product ForSale. The product UPC will match the UPC from the Product Overview section.       
 
 During the process we can get and track any item related information, like the state of the item in the Blockchain, by going to the Product Overview section to fetch information about a specific UPC.   
 
-# Additional libraries used in this project
+### Additional libraries used in this project
 
 ### UML Diagrams
 Diagrams at diagrams folder
