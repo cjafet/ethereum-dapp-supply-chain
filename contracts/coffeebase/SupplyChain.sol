@@ -3,11 +3,9 @@ pragma solidity ^0.5.16;
 import "../coffeeaccesscontrol/RetailerRole.sol";
 import "../coffeeaccesscontrol/ConsumerRole.sol";
 import "../coffeeaccesscontrol/DistributorRole.sol";
+import "../coffeecore/Ownable.sol";
 
-contract SupplyChain is RetailerRole, ConsumerRole, DistributorRole {
-
-  // Define 'owner'
-  address owner;
+contract SupplyChain is Ownable, RetailerRole, ConsumerRole, DistributorRole {
 
   // Define a variable called 'upc' for Universal Product Code (UPC)
   uint  upc;
@@ -68,7 +66,7 @@ contract SupplyChain is RetailerRole, ConsumerRole, DistributorRole {
 
   // Define a modifer that checks to see if msg.sender == owner of the contract
   modifier onlyOwner() {
-    require(msg.sender == owner);
+    require(msg.sender == owner());
     _;
   }
 
@@ -145,15 +143,14 @@ contract SupplyChain is RetailerRole, ConsumerRole, DistributorRole {
   // and set 'sku' to 1
   // and set 'upc' to 1
   constructor() public payable {
-    owner = msg.sender;
     sku = 1;
     upc = 1;
   }
 
   // Define a function 'kill' if required
   function kill() public {
-    if (msg.sender == owner) {
-      address payable own = address(uint160(owner));
+    if (msg.sender == owner()) {
+      address payable own = address(uint160(owner()));
       selfdestruct(own);
     }
   }
@@ -236,6 +233,8 @@ contract SupplyChain is RetailerRole, ConsumerRole, DistributorRole {
     paidEnough(items[_upc].productPrice)
     // Call modifer to send any excess ether back to buyer
     checkValue(_upc)
+    // Access Control List enforced by calling Smart Contract / DApp
+    onlyDistributor()
     {
     
     // Update the appropriate fields - ownerID, distributorID, itemState

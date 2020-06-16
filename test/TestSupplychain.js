@@ -1,7 +1,6 @@
 // This script is designed to test the solidity smart contract - SuppyChain.sol -- and the various functions within
 // Declare a variable and assign the compiled smart contract artifact
 const truffleAssert = require('truffle-assertions');
-var should = require('chai').should();
 var expect = require('chai').expect
 var SupplyChain = artifacts.require('SupplyChain')
 
@@ -190,6 +189,8 @@ contract('SupplyChain', function(accounts) {
     // 5th Test
     it("Testing smart contract function buyItem() that allows a distributor to buy coffee", async() => {
         const supplyChain = await SupplyChain.deployed()
+
+        await supplyChain.addDistributor(distributorID, {from: ownerID});
         
         // Declare and Initialize a variable for event
         var eventEmitted = false
