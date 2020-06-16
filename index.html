@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fair Trade Coffee</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+    <div class="container-fluid">
+        <h1 style="text-align: center;">Fair Trade Coffee</h1>
+        <hr>
+        <p style="text-align: center;">Prove the authenticity of coffee using the Ethereum blockchain.</p>
+   
+    </div>
+
+
+        <div id="ftc-harvest">
+            <div class="row" style="margin-left:-30px;margin-right:-30px;">
+                <div class="form-group col-xl-4 col-lg-4 col-md-4 col-sm-12">
+                    <h3>Product Overview</h3>
+                    SKU
+                    <br>
+                    <input class="input-field" type="number" id="sku" name="sku" value=1><br>
+                    UPC
+                    <br>
+                    <input type="number" id="upc" name="upc" value=1><br>
+                    Current Owner ID
+                    <br>
+                    <input type="text" id="ownerID" name="ownerID" value="0x963865f57804b38459dd4b2da2f760211a200438" size="50"><br>
+                    <div class=button-div>
+                        <button class="btn-fetchOne" id="button" type="button" data-toggle="modal" data-target="#exampleModal" data-id="9">Fetch Product Info</button>
+                        <!-- <button class="btn-fetchTwo" id="button" type="button" data-id="10">Fetch Data 2</button> -->
+                    </div>
+                </div>
+                <div class="form-group col-xl-4 col-lg-4 col-md-4 col-sm-12">
+                    <h3>Farm Details</h3>
+                    Farmer ID
+                    <br>
+                    <input type="text" id="originFarmerID" name="originFarmerID" value="0x99c289eb2aacec289631a5ddf62cf27a63d4494f"
+                        size="50"><br>
+                    Farm Name
+                    <br>
+                    <input type="text" id="originFarmName" name="originFarmName" value="John Doe"><br>
+                    Farm Information
+                    <br>
+                    <input type="text" id="originFarmInformation" name="originFarmInformation" value="Yarra Valley"><br>
+                    Farm Latitude
+                    <br>
+                    <input type="text" id="originFarmLatitude" name="originFarmLatitude" value="-38.239770"><br>
+                    Farm Longitude
+                    <br>
+                    <input type="text" id="originFarmLongitude" name="originFarmLongitude" value="144.341490"><br>
+                    <br>
+                    <button class="btn-harvest" id="button" type="button" data-id="1">Harvest</button>
+                    <button class="btn-process" id="button" type="button" data-id="2">Process</button>
+                    <button class="btn-pack" id="button" type="button" data-id="3">Pack</button>
+                    <button class="btn-forsale" id="button" type="button" data-id="4">ForSale</button>
+                </div>
+                <div class="form-group col-xl-4 col-lg-4 col-md-4 col-sm-12">
+                    <h3>Product Details</h3>
+                    Product Notes
+                    <br>
+                    <input type="text" id="productNotes" name="productNotes" value="Best beans for Espresso" size="60"><br>
+                    Product Price
+                    <br>
+                    <input type="number" id="productPrice" name="productPrice" value=1>ETH<br>
+                    Distributor ID
+                    <br>
+                    <input type="text" id="distributorID" name="distributorID" value="0xf1b1bcd24dad92303dd9fe78be639f7bcf9c238d"
+                        size="50">
+                    <br>
+                    Retailer ID
+                    <br>
+                    <input type="text" id="retailerID" name="retailerID" value="0x0fb2bfefd526966c87efa19f6693d50971763fc2"
+                        size="50"><br>
+                    Consumer ID
+                    <br>
+                    <input type="text" id="consumerID" name="consumerID" value="0x5d777e9127b28fb119e81a6304278a0a21bef1c4"
+                        size="50"><br>
+                    <br>
+                    <button class="btn-buy" id="button" type="button" data-id="5">Buy</button>
+                    <button class="btn-ship" id="button" type="button" data-id="6">Ship</button>
+                    <button class="btn-receive" id="button" type="button" data-id="7">Receive</button>
+                    <button class="btn-purchase" id="button" type="button" data-id="8">Purchase</button>
+                </div>
+                <hr>
+            </div>
+        </div>
+
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header" style="background-color: #00BCD4;color:#fff;">
+                    <h5 class="modal-title" id="exampleModalLabel"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"  data-id="20">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <ul id="table-body">
+                    fetching data...   
+                    </ul>
+                </div>
+                <!-- <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" data-id="21">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div> -->
+                </div>
+            </div>
+        </div>
+
+        <div class="position-absolute" style="top:20px;right:20px;">
+            <div role="alert" aria-live="assertive" aria-atomic="true" class="toast" data-delay="5000">
+                <div class="toast-header" style="background-color: #00BCD4;color:#fff;">
+                    <!-- <img src="..." class="rounded mr-2" alt="..."> -->
+                    <strong class="mr-auto"><span id="toast-title"></span></strong>
+                    <small>just now</small>
+                    <button id="close-toast" type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                    <span aria-hidden="true" style="color:#fff;" data-id="22">&times;</span>
+                    </button>
+                </div>
+                <div class="toast-body">
+                    <span id="toast-msg" style="overflow-wrap: break-word;"></span> 
+                </div>
+            </div>
+        </div>
+
+
+    <h2>Transaction History</h2>
+    <ul id="ftc-history"></ul>
+    <div>
+        <h2>Events</h2>
+        <ul id="ftc-events">
+            <!-- Events will appear here from app.js -->
+        </ul>
+        <br>
+        <hr>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- <script src="js/web3.min.js"></script> -->
+    <!-- Bootstrap -->
+    <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    
+    <script src="js/truffle-contract.js"></script>
+    <script src="js/app.js"></script>
+    
+</body>
+
+</html>
